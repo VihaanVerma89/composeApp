@@ -13,9 +13,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -97,5 +95,58 @@ fun PreviewMessageCard(
     ComposeAppTheme {
 //        Converstaion(messages = SampleData.conversationSample.subList(0, 1))
         Converstaion(messages = SampleData.conversationSample)
+    }
+}
+
+
+@Preview
+@Composable
+fun PreviewClickCounter(
+) {
+    var clicks = remember { mutableStateOf(0) }
+    ClickCounter(clicks = clicks) {
+        clicks.value++
+    }
+}
+
+@Composable
+fun ClickCounter(
+    clicks: MutableState<Int>,
+    onClick: () -> Unit,
+) {
+    Button(onClick = onClick)
+    {
+        Text("I've been clicked ${clicks.value} times")
+    }
+}
+
+
+@Composable
+fun Counter() {
+
+    val count = remember { mutableStateOf(0) }
+
+    Button(onClick = { count.value++ }) {
+        Text("I've been clicked ${count.value} times")
+    }
+}
+
+@Composable
+fun Greeting(name: String) {
+    Text(text = "Hello $name!", modifier = Modifier.padding(24.dp))
+}
+
+
+
+@Preview
+@Composable
+fun MyScreenContent(names: List<String> = listOf("Android", "there")) {
+    Column {
+        for (name in names) {
+            Greeting(name = name)
+            Divider(color = Color.Black)
+        }
+        Divider(color = Color.Transparent, thickness = 32.dp)
+        Counter()
     }
 }
