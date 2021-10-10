@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ComposeApp</string>
     <string name="title_activity_clicked">ClickedActivity</string>
+    <string name="title_activity_compose_layout">ComposeLayoutActivity</string>
 </resources>
