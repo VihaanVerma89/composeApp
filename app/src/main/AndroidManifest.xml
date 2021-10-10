@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComposeApp">
         <activity
+            android:name=".ClickedActivity"
+            android:exported="true"
+            android:label="@string/title_activity_clicked"
+            android:theme="@style/Theme.ComposeApp.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
