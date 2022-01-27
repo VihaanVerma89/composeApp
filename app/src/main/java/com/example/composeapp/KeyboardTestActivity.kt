@@ -17,14 +17,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.view.WindowCompat
 import com.example.composeapp.ui.theme.ComposeAppTheme
+import com.google.accompanist.insets.ProvideWindowInsets
+import com.google.accompanist.insets.navigationBarsWithImePadding
+import com.google.accompanist.insets.statusBarsPadding
 
 class KeyboardTestActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
-            ComposeAppTheme {
-                KeyboardTest()
+            ProvideWindowInsets {
+                ComposeAppTheme {
+                    KeyboardTest()
+                }
             }
         }
     }
@@ -37,7 +44,10 @@ fun KeyboardTest(
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 16.dp, end = 16.dp, top = 16.dp),
+            .statusBarsPadding()
+            .padding(start = 16.dp, end = 16.dp, top = 16.dp)
+            .navigationBarsWithImePadding(),
+
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
 
@@ -51,7 +61,7 @@ fun KeyboardTest(
             Toast.makeText(context,
                 "Button Clicked",
                 Toast.LENGTH_LONG).show()
-        }, modifier = Modifier.padding(top = 8.dp, bottom=8.dp)) {
+        }, modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)) {
             Text(text = "Click me")
         }
     }
